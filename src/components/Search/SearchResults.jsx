@@ -13,6 +13,7 @@ function SearchResults({ query }) {
     const [pageSize, setPageSize] = useState(10);
     const [totalResults, setTotalResults] = useState(0);
     const API_KEY = '5cc1fc2e234843e2ac5471ada9d3f2c7';
+
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
@@ -20,6 +21,7 @@ function SearchResults({ query }) {
                 `https://newsapi.org/v2/everything?q=${query}&page=${page}&pageSize=${pageSize}&apiKey=${API_KEY}`
             );
             setArticles(response.data.articles);
+            console.log(response.data.articles);
             setTotalResults(response.data.totalResults);
 
             setLoading(false);
@@ -41,29 +43,37 @@ function SearchResults({ query }) {
 
     return (
         <div>
-            <h1 className="text-4xl font-bold mb-4">Search Results | {query}</h1>
-
             {loading ? (
                 <Loader />
             ) : (
                 <div>
-                    <ArticleList
-                        articles={articles}
-                        handleArticleClick={handleArticleClick}
-                    />
-                    <Pagination
-                        currentPage={page}
-                        totalPages={Math.ceil(totalResults / pageSize)}
-                        onPageChange={handlePageChange}
-                    />
+                    {totalResults > 0 ? (
+                        <div>
+                            <h1 className="text-4xl font-bold mb-4">Search Results | {query}</h1>
+                            <ArticleList
+                                articles={articles}
+                                handleArticleClick={handleArticleClick}
+                            />
+                            <Pagination
+                                currentPage={page}
+                                totalPages={Math.ceil(totalResults / pageSize)}
+                                onPageChange={handlePageChange}
+                            />
+                        </div>
+                    ) : (
+                        <div className="flex items-center justify-center h">
+                            <h2 className="text-6xl text-gray-800">Result is not difined</h2>
+                        </div>
+                    )}
                 </div>
-
             )}
+
             {selectedArticle && (
                 <ArticlePopup article={selectedArticle} onClose={handleClosePopup} />
             )}
         </div>
     );
+
 }
 
 export default SearchResults;

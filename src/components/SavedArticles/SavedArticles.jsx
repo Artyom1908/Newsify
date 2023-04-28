@@ -22,6 +22,11 @@ function SavedArticles() {
         dispatch(removeArticle(article))
 
     }
+    if (savedArticles.length === 0) {
+        return (<div className="flex items-center justify-center h">
+            <h2 className="text-6xl text-gray-800">There is nothing saved</h2>
+        </div>)
+    }
     return (
         <div>
             <h1 className="text-4xl font-bold mb-4">Saved Articles</h1>
