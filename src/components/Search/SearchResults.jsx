@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import ArticleList from "./ArticleList";
-import ArticlePopup from "./ArticlePopup";
-import Loader from "./Loader";
-import Pagination from "./Pagination";
+import ArticleList from "../Article/ArticleList";
+import ArticlePopup from "../Article/ArticlePopup";
+import Loader from "../Loader/Loader";
+import Pagination from "../Pagination/Pagination";
 
 function SearchResults({ query }) {
     const [articles, setArticles] = useState([]);

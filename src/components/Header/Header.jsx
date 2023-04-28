@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBookmark } from '@fortawesome/free-solid-svg-icons';
-import SearchBar from './SearchBar';
+import SearchBar from '../Search/SearchBar';
 
 function Header() {
     const [searchQuery, setSearchQuery] = useState('');
 
     const handleSearch = (query) => {
         setSearchQuery(query);
-
     };
 
     return (

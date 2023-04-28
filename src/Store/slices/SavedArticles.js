@@ -11,8 +11,12 @@ const savedArticlesSlice = createSlice({
                 state.push(articleToAdd);
             }
         },
+        removeArticle: (state, action) => {
+            const titleToRemove = action.payload;
+            return state.filter((article) => article.title !== titleToRemove.title);
+        },
     },
 });
 
-export const { addArticle } = savedArticlesSlice.actions;
+export const { addArticle, removeArticle } = savedArticlesSlice.actions;
 export default savedArticlesSlice.reducer;

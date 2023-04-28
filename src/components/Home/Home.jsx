@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import CountryButtons from "./CountryButtons";
-import CategoryButtons from "./CategoryButtons";
-import ArticleList from "./ArticleList";
-import Loader from "./Loader";
-import ArticlePopup from "./ArticlePopup";
-import Pagination from "./Pagination";
+import CountryButtons from "../Buttons/CountryButtons";
+import CategoryButtons from "../Buttons/CategoryButtons";
+import ArticleList from "../Article/ArticleList";
+import Loader from "../Loader/Loader";
+import ArticlePopup from "../Article/ArticlePopup";
+import Pagination from "../Pagination/Pagination";
 
 function Home() {
     const [articles, setArticles] = useState([]);

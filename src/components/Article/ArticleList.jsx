@@ -2,8 +2,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBookmark, faShareAlt } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 import { Link } from "react-router-dom";
-import { addArticle } from "../Store/slices/SavedArticles";
 import { useDispatch } from "react-redux";
+import { addArticle } from "../../Store/slices/SavedArticles";
 
 function ArticleList({ articles, handleArticleClick }) {
     const dispatch = useDispatch();
@@ -11,6 +11,7 @@ function ArticleList({ articles, handleArticleClick }) {
     const AddArticle = (article) => {
         dispatch(addArticle(article))
     }
+
     return (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {articles.map((article, i) => (

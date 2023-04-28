@@ -1,14 +1,15 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBookmark, faShareAlt } from "@fortawesome/free-solid-svg-icons";
+import { faShareAlt, faTimes } from "@fortawesome/free-solid-svg-icons";
 import React, { useState } from "react";
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import ArticlePopup from "./ArticlePopup";
+import ArticlePopup from "../Article/ArticlePopup";
+import { removeArticle } from "../../Store/slices/SavedArticles";
 
 function SavedArticles() {
-    const savedArticles = useSelector((state) => state.savedArticles);
+    const savedArticles = useSelector((store) => store.savedArticles.savedArticles);
     const [selectedArticle, setSelectedArticle] = useState(null);
-
+    const dispatch = useDispatch();
     console.log(savedArticles);
     const handleArticleClick = (article) => {
         setSelectedArticle(article);
@@ -16,9 +17,14 @@ function SavedArticles() {
     const handleClosePopup = () => {
         setSelectedArticle(null);
     };
+
+    const RemoveArticle = (article) => {
+        dispatch(removeArticle(article))
+
+    }
     return (
         <div>
-            <h1>Saved Articles</h1>
+            <h1 className="text-4xl font-bold mb-4">Saved Articles</h1>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {savedArticles.map((article, i) => (
                     <div key={i} className="max-w-sm rounded overflow-hidden shadow-lg mx-4 my-4">
@@ -37,9 +43,13 @@ function SavedArticles() {
                                 Read More
                             </Link>
                         </div>
+
                         <div className="px-6 py-4">
                             <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
                                 {article.source.name}
+                            </span>
+                            <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                                <FontAwesomeIcon icon={faTimes} onClick={() => RemoveArticle(article)} />
                             </span>
                             <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
                                 <FontAwesomeIcon
